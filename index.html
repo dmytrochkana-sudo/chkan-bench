@@ -93,10 +93,6 @@
             margin-bottom: 50px;
         }
 
-        .section-title span {
-            color: var(--accent);
-        }
-
         .title-line {
             display: block;
             width: 60px;
@@ -232,7 +228,7 @@
         }
         
         .expert-img-placeholder::after {
-            content: '[ Место для вашего фото с медалями / помоста ]';
+            content: '[ Фото с медалями / помоста ]';
             font-size: 0.9rem;
             color: var(--text-secondary);
         }
@@ -272,7 +268,7 @@
             margin-top: 5px;
         }
 
-        /* --- Блок: Направления (Специализация) --- */
+        /* --- Блок: Направления --- */
         .directions-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -304,167 +300,73 @@
             font-size: 0.95rem;
         }
 
-        /* --- Блок: Программа --- */
-        .program-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-        }
-
-        .program-day {
-            background-color: var(--bg-card);
-            border: 1px solid var(--border);
-            padding: 30px;
-        }
-
-        .day-title {
-            color: var(--accent);
-            font-weight: 800;
-            text-transform: uppercase;
-            font-size: 0.85rem;
-            margin-bottom: 5px;
-            display: block;
-        }
-
-        .program-day h3 {
-            font-size: 1.3rem;
-            text-transform: uppercase;
-            margin-bottom: 15px;
-        }
-
-        .program-day p {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-
-        /* --- Блок: Калькулятор --- */
-        .calc-box {
-            background-color: var(--bg-card);
-            border: 1px solid var(--border);
-            padding: 45px;
-            max-width: 650px;
-            margin: 0 auto;
-        }
-
-        .calc-grid {
+        /* --- Блок: Тарифы / Стоимость --- */
+        .pricing-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            margin-bottom: 30px;
+            gap: 30px;
+            margin-top: 20px;
         }
 
-        .form-group {
+        .price-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 45px 35px;
             display: flex;
             flex-direction: column;
-            gap: 8px;
+            position: relative;
         }
 
-        .form-group label {
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            color: var(--text-secondary);
-            font-weight: 700;
-        }
-
-        .form-group input {
-            background-color: var(--bg-input);
-            border: 1px solid var(--border);
-            padding: 14px;
-            color: var(--text-primary);
-            font-size: 1.2rem;
-            font-weight: 700;
-            outline: none;
-        }
-
-        .form-group input:focus {
+        .price-card.popular {
             border-color: var(--accent);
+            transform: scale(1.03);
         }
 
-        .calc-result {
-            background-color: var(--bg-main);
-            padding: 25px;
-            border-left: 4px solid var(--accent);
-            text-align: center;
-        }
-
-        .calc-result p {
-            font-size: 0.85rem;
+        .badge-popular {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--accent);
+            color: #fff;
+            padding: 4px 15px;
+            font-size: 0.75rem;
+            font-weight: 800;
             text-transform: uppercase;
-            color: var(--text-secondary);
+            letter-spacing: 1px;
         }
 
-        .calc-result span {
+        .price-card h3 {
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .price-value {
             font-size: 2.2rem;
             font-weight: 900;
-            color: var(--text-primary);
-            display: block;
-            margin-top: 5px;
-        }
-
-        /* --- Блок: Медиа --- */
-        .media-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-        }
-
-        .media-card {
-            position: relative;
-            background-color: var(--bg-card);
-            border: 1px solid var(--border);
-            height: 240px;
-            display: flex;
-            align-items: flex-end;
-            padding: 25px;
-            overflow: hidden;
-            cursor: pointer;
-        }
-
-        .media-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(to top, rgba(11,12,16,0.95) 0%, rgba(11,12,16,0.3) 100%);
-            z-index: 1;
-            transition: opacity 0.3s;
-        }
-
-        .media-card:hover::before {
-            background: linear-gradient(to top, rgba(229,57,53,0.85) 0%, rgba(11,12,16,0.4) 100%);
-        }
-
-        .media-card h4 {
-            position: relative;
-            z-index: 2;
-            font-size: 1.1rem;
-            text-transform: uppercase;
-        }
-
-        /* --- Блок: Отзывы --- */
-        .reviews-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 25px;
-        }
-
-        .review-card {
-            background-color: var(--bg-card);
-            padding: 40px;
-            border: 1px solid var(--border);
-        }
-
-        .review-card p {
-            font-style: italic;
-            color: var(--text-primary);
-            font-size: 1.05rem;
+            color: #fff;
             margin-bottom: 25px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 15px;
         }
 
-        .review-author {
-            font-size: 0.85rem;
-            text-transform: uppercase;
+        .price-features {
+            list-style: none;
             color: var(--text-secondary);
-            font-weight: 700;
+            font-size: 0.95rem;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 35px;
+            flex-grow: 1;
+        }
+
+        .price-features li::before {
+            content: "✓ ";
+            color: var(--accent);
+            font-weight: bold;
+            margin-right: 5px;
         }
 
         /* --- Блок: Контакты --- */
@@ -477,7 +379,24 @@
         .contact-info p {
             color: var(--text-secondary);
             font-size: 1.1rem;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
+        }
+
+        .contact-methods {
+            margin-bottom: 35px;
+        }
+
+        .method-item {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .method-item span {
+            color: var(--accent);
         }
 
         .btn-tg {
@@ -490,6 +409,26 @@
         .btn-tg:hover {
             background-color: #1a66a4;
             transform: translateY(-2px);
+        }
+
+        .payment-info {
+            margin-top: 30px;
+            background-color: rgba(255,255,255,0.02);
+            padding: 20px;
+            border: 1px dashed var(--border);
+        }
+
+        .payment-info h4 {
+            font-size: 1rem;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .payment-info p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 0;
         }
 
         .contact-form {
@@ -532,19 +471,19 @@
 
         /* --- Адаптивность --- */
         @media (max-width: 1024px) {
-            .directions-grid { grid-template-columns: 1fr 1fr; }
-            .program-grid, .media-grid { grid-template-columns: repeat(2, 1fr); }
+            .directions-grid, .pricing-grid { grid-template-columns: 1fr 1fr; }
+            .price-card.popular { transform: none; }
             .expert-grid, .contact-wrapper { grid-template-columns: 1fr; gap: 40px; }
             .hero h1 { font-size: 3.8rem; }
         }
 
         @media (max-width: 768px) {
-            .nav-links { display: none; }
+            .nav-links { none; }
             .hero h1 { font-size: 2.8rem; }
-            .directions-grid, .program-grid, .media-grid, .reviews-grid, .calc-grid { grid-template-columns: 1fr; }
+            .directions-grid, .pricing-grid, .contact-wrapper { grid-template-columns: 1fr; }
             .section-title { font-size: 2rem; }
             .hero-btns { flex-direction: column; }
-            .calc-box, .contact-form { padding: 25px; }
+            .contact-form { padding: 25px; }
         }
     </style>
 </head>
@@ -556,7 +495,7 @@
             <nav class="nav-links">
                 <a href="#about">Об авторе</a>
                 <a href="#directions">Направления</a>
-                <a href="#program">Структура</a>
+                <a href="#prices">Стоимость</a>
                 <a href="#contacts">Запись</a>
             </nav>
         </div>
@@ -570,7 +509,7 @@
                 <p>Профессиональный тренировочный подход от Заслуженного Мастера Спорта. Для тех, кто хочет ликвидировать плато, перестроить технику и стабильно увеличивать результат в жиме без травм.</p>
                 <div class="hero-btns">
                     <a href="#contacts" class="btn btn-primary">Оставить заявку на разбор</a>
-                    <a href="#directions" class="btn btn-secondary">Направления подготовки</a>
+                    <a href="#prices" class="btn btn-secondary">Стоимость ведения</a>
                 </div>
             </div>
         </div>
@@ -583,7 +522,7 @@
                 <div class="expert-img-placeholder"></div>
                 <div class="expert-text">
                     <p>В силовом спорте не работают случайные схемы из интернета и слепое копирование чужих планов. Высокий результат на помосте — это всегда строгая математика нагрузок, знание биомеханики и выверенная до миллиметра траектория движения.</p>
-                    <p>CHKAN BENCH SYSTEM — это квинтэссенция моего многолетнего соревновательного опыта, объединенная в жесткую и рабочую систему подготовки. Здесь нет маркетинговой воды, только чистая практика, которая выведет вашу силу на новый уровень.</p>
+                    <p>CHKAN BENCH SYSTEM — это квинтэссенция моего соревновательного опыта, объединенная в жесткую и рабочую систему подготовки. Здесь нет маркетинговой воды, только чистая практика, которая выведет вашу силу на новый уровень.</p>
                     
                     <div class="achievements-list">
                         <div class="achieve-item">
@@ -636,87 +575,46 @@
         </div>
     </section>
 
-    <section id="program">
+    <section id="prices">
         <div class="container">
-            <h2 class="section-title">Принцип периодизации <span class="title-line"></span></h2>
-            <div class="program-grid">
-                <div class="program-day">
-                    <span class="day-title">Этап 1</span>
-                    <h3>Тяжелая работа</h3>
-                    <p>Развитие ЦНС и absolute силовых показателей. Низкий объем, высокий тоннаж.</p>
+            <h2 class="section-title">Варианты и стоимость ведения <span class="title-line"></span></h2>
+            <div class="pricing-grid">
+                <div class="price-card">
+                    <h3>Разовый разбор</h3>
+                    <div class="price-value">Аудит техники</div>
+                    <ul class="price-features">
+                        <li>Полный видео-разбор вашего жима</li>
+                        <li>Поиск скрытых ошибок в углах и срыве</li>
+                        <li>Коррекция моста и траектории штанги</li>
+                        <li>Рекомендации по подсобным упражнениям</li>
+                    </ul>
+                    <a href="#contacts" class="btn btn-secondary">Заказать аудит</a>
                 </div>
-                <div class="program-day">
-                    <span class="day-title">Этап 2</span>
-                    <h3>Скорость и углы</h3>
-                    <p>Взрывная работа со штангой. Отработка фазы старта и идеального тайминга.</p>
+                
+                <div class="price-card popular">
+                    <div class="badge-popular">Популярно</div>
+                    <h3>Онлайн-ведение</h3>
+                    <div class="price-value">1 месяц</div>
+                    <ul class="price-features">
+                        <li>Индивидуальный тренировочный цикл</li>
+                        <li>Расчет процентов под вашу цель</li>
+                        <li>Постоянный контроль техники по видео</li>
+                        <li>Корректировка плана каждую неделю</li>
+                        <li>Прямая связь в Telegram без кураторов</li>
+                    </ul>
+                    <a href="#contacts" class="btn btn-primary">Начать подготовку</a>
                 </div>
-                <div class="program-day">
-                    <span class="day-title">Этап 3</span>
-                    <h3>Объемный тренинг</h3>
-                    <p>Гипертрофия целевых групп, укрепление связочного аппарата, накопление потенциала.</p>
-                </div>
-                <div class="program-day">
-                    <span class="day-title">Этап 4</span>
-                    <h3>Подсобка и ОФП</h3>
-                    <p>Устранение дисбалансов. Разгрузка суставов перед новым силовым микроциклом.</p>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <section>
-        <div class="container">
-            <h2 class="section-title" style="text-align: center; font-size: 2rem;">Расчет планируемого прогресса <span class="title-line" style="margin: 15px auto 0;"></span></h2>
-            <div class="calc-box">
-                <div class="calc-grid">
-                    <div class="form-group">
-                        <label for="current-max">Сейчас (кг)</label>
-                        <input type="number" id="current-max" value="100" min="0">
-                    </div>
-                    <div class="form-group">
-                        <label for="target-max">Цель (кг)</label>
-                        <input type="number" id="target-max" value="112" min="0">
-                    </div>
-                    <div class="form-group">
-                        <label for="weeks">Недель цикла</label>
-                        <input type="number" id="weeks" value="12" min="1">
-                    </div>
-                </div>
-                <div class="calc-result">
-                    <p>Необходимый средний прирост в неделю:</p>
-                    <span id="weekly-progress">1.00 кг</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="media">
-        <div class="container">
-            <h2 class="section-title">Разборы и рекорды <span class="title-line"></span></h2>
-            <div class="media-grid">
-                <div class="media-card"><h4>Мировые рекорды</h4></div>
-                <div class="media-card"><h4>Технический разбор</h4></div>
-                <div class="media-card"><h4>Ошибки в жиме</h4></div>
-                <div class="media-card"><h4>Результаты учеников</h4></div>
-            </div>
-        </div>
-    </section>
-
-    <section>
-        <div class="container">
-            <h2 class="section-title">Результаты на помосте <span class="title-line"></span></h2>
-            <div class="reviews-grid">
-                <div class="review-card">
-                    <p>«Добавил 12,5 кг к синглу за цикл. Система разложила все по полочкам, ушел хаос с процентами».</p>
-                    <span class="review-author">Алексей М., ЛСГ</span>
-                </div>
-                <div class="review-card">
-                    <p>«В народном жиме выносливость выросла на 6 повторений с собственным весом. Лучший результат за 3 года».</p>
-                    <span class="review-author">Дмитрий К., спортсмен-любитель</span>
-                </div>
-                <div class="review-card">
-                    <p>«Исправил траекторию срыва и углы локтей. Полностью прошла хроническая боль в плече».</p>
-                    <span class="review-author">Сергей В., КМС</span>
+                <div class="price-card">
+                    <h3>VIP Подготовка</h3>
+                    <div class="price-value">До результата</div>
+                    <ul class="price-features">
+                        <li>Полное ведение до соревновательного помоста</li>
+                        <li>Вывод на пик силы без травм и перетренированности</li>
+                        <li>Помощь в выборе дивизиона и экипировки</li>
+                        <li>Приоритетный разбор видео и созвоны</li>
+                    </ul>
+                    <a href="#contacts" class="btn btn-secondary">Обсудить VIP</a>
                 </div>
             </div>
         </div>
@@ -724,25 +622,37 @@
 
     <section id="contacts">
         <div class="container">
-            <h2 class="section-title">Подать заявку на разбор <span class="title-line"></span></h2>
+            <h2 class="section-title">Контакты и запись <span class="title-line"></span></h2>
             <div class="contact-wrapper">
                 <div class="contact-info">
-                    <p>Заполните форму, чтобы отправить текущие данные вашей подготовки. Дмитрий лично проведет аудит вашей техники и предложит оптимальный формат ведения.</p>
-                    <a href="https://t.me/your_telegram_username" target="_blank" class="btn btn-tg">Написать напрямую в Telegram</a>
+                    <p>Свяжитесь со мной напрямую для обсуждения формата тренировок или заполните анкету справа. Я лично свяжусь с вами в течение дня.</p>
+                    
+                    <div class="contact-methods">
+                        <div class="method-item"><span>Телефон:</span> +7 (978) 775-05-29</div>
+                        <div class="method-item"><span>Telegram:</span> @dmytrorex22</div>
+                    </div>
+
+                    <a href="https://t.me/dmytrorex22" target="_blank" class="btn btn-tg">Написать напрямую в Telegram</a>
+
+                    <div class="payment-info">
+                        <h4>Способы оплаты</h4>
+                        <p>Оплата услуг ведения и аудита производится по согласованию на карту (СБП / перевод Сбербанк, Т-Банк, ПСБ) после предварительного обсуждения целей.</p>
+                    </div>
                 </div>
-                <form class="contact-form" onsubmit="event.preventDefault(); alert('Данные успешно отправлены! Скоро свяжемся.');">
+                
+                <form class="contact-form" onsubmit="event.preventDefault(); alert('Анкета успешно отправлена! Дмитрий свяжется с вами в Telegram в ближайшее время.');">
                     <input type="text" placeholder="Ваше имя" required>
-                    <input type="text" placeholder="Телефон или Ник в Telegram" required>
-                    <input type="text" placeholder="Текущий лучший жим (кг / повторения)" required>
+                    <input type="text" placeholder="Ваш ник в Telegram или Телефон" required>
+                    <input type="text" placeholder="Текущий лучший жим (кг)" required>
                     <select required>
-                        <option value="" disabled selected>Выберите приоритетное направление</option>
-                        <option value="classic">Классический жим лежа</option>
+                        <option value="" disabled selected>Приоритетное направление</option>
                         <option value="national">Народный жим</option>
+                        <option value="classic">Классический жим лежа</option>
                         <option value="military">Военный жим</option>
                         <option value="equip">Жим в экипировке</option>
                         <option value="ofp">Общая физическая подготовка (ОФП)</option>
                     </select>
-                    <button type="submit" class="btn btn-primary">Отправить данные Дмитрию</button>
+                    <button type="submit" class="btn btn-primary">Отправить анкету Дмитрию</button>
                 </form>
             </div>
         </div>
@@ -754,30 +664,5 @@
         </div>
     </footer>
 
-    <script>
-        const currentInput = document.getElementById('current-max');
-        const targetInput = document.getElementById('target-max');
-        const weeksInput = document.getElementById('weeks');
-        const resultSpan = document.getElementById('weekly-progress');
-
-        function calculateProgress() {
-            const current = parseFloat(currentInput.value) || 0;
-            const target = parseFloat(targetInput.value) || 0;
-            const weeks = parseInt(weeksInput.value) || 1;
-
-            if (target <= current) {
-                resultSpan.textContent = "0.00 кг (Цель достигнута)";
-                return;
-            }
-
-            const diff = target - current;
-            const perWeek = diff / weeks;
-            resultSpan.textContent = perWeek.toFixed(2) + " кг";
-        }
-
-        currentInput.addEventListener('input', calculateProgress);
-        targetInput.addEventListener('input', calculateProgress);
-        weeksInput.addEventListener('input', calculateProgress);
-    </script>
 </body>
 </html>
