@@ -156,7 +156,7 @@
 
         /* --- Главный экран --- */
         .hero {
-            min-height: 100vh;
+            min-height: 100 vh;
             display: flex;
             align-items: center;
             background: radial-gradient(circle at 85% 30%, rgba(229, 57, 53, 0.18) 0%, transparent 60%), 
@@ -214,23 +214,22 @@
             align-items: center;
         }
 
-        .expert-img-placeholder {
-            background: linear-gradient(135deg, #1a1b26 0%, #12131c 100%);
+        .expert-img-container {
+            width: 100%;
+            height: 550px;
             border: 1px solid var(--border);
-            height: 500px;
+            overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
-            text-transform: uppercase;
-            font-weight: 800;
-            color: rgba(255,255,255,0.1);
-            position: relative;
+            background-color: var(--bg-card);
         }
-        
-        .expert-img-placeholder::after {
-            content: '[ Место для фото Дмитрия ]';
-            font-size: 0.9rem;
-            color: var(--text-secondary);
+
+        .expert-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
         }
 
         .expert-text p {
@@ -475,6 +474,7 @@
             .price-card.popular { transform: none; }
             .expert-grid, .contact-wrapper { grid-template-columns: 1fr; gap: 40px; }
             .hero h1 { font-size: 3.8rem; }
+            .expert-img-container { height: 450px; }
         }
 
         @media (max-width: 768px) {
@@ -484,6 +484,7 @@
             .section-title { font-size: 2rem; }
             .hero-btns { flex-direction: column; }
             .contact-form { padding: 25px; }
+            .expert-img-container { height: 380px; }
         }
     </style>
 </head>
@@ -519,9 +520,11 @@
         <div class="container">
             <h2 class="section-title">Дмитрий Чкана <span class="title-line"></span></h2>
             <div class="expert-grid">
-                <div class="expert-img-placeholder"></div>
+                <div class="expert-img-container">
+                    <img src="Dmitrij_Chkana_foto.jpg" alt="Дмитрий Чкана">
+                </div>
                 <div class="expert-text">
-                    <p>В силовом спорте не работают случайные схемы из интернета и слепое копирование чужих планов. Высокий результат на помосте — это всегда строгая математика нагрузок, знание биомеханики и выверенная до миллиметра траектория движения.</p>
+                    <p>В силовом спорте не работают случайные схемы из интернета и слепое копирование чужих plans. Высокий результат на помосте — это всегда строгая математика нагрузок, знание биомеханики и выверенная до миллиметра траектория движения.</p>
                     <p>CHKAN BENCH SYSTEM — это квинтэссенция моего многолетнего соревновательного опыта, объединенная в жесткую и рабочую систему подготовки. Здесь нет маркетинговой воды, только чистая практика, которая выведет вашу силу на новый уровень.</p>
                     
                     <div class="achievements-list">
