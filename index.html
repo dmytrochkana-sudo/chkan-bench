@@ -225,6 +225,13 @@
             max-width: 850px;
         }
 
+        .hero-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) 420px;
+            gap: 46px;
+            align-items: center;
+        }
+
         .hero-badge {
             display: inline-block;
             background-color: rgba(229, 57, 53, 0.1);
@@ -261,6 +268,91 @@
         .hero-btns {
             display: flex;
             gap: 20px;
+        }
+
+        .hero-max-card {
+            background: rgba(18, 19, 28, 0.92);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            padding: 28px;
+            box-shadow: 0 24px 70px rgba(0, 0, 0, 0.38);
+            backdrop-filter: blur(14px);
+        }
+
+        .hero-max-card h2 {
+            font-size: 1.15rem;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            letter-spacing: 0;
+        }
+
+        .hero-max-card > p {
+            color: var(--text-secondary);
+            font-size: 0.92rem;
+            margin-bottom: 20px;
+        }
+
+        .max-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+        }
+
+        .max-form .form-group.full {
+            grid-column: 1 / -1;
+        }
+
+        .max-result {
+            margin-top: 20px;
+            background: var(--bg-main);
+            border-left: 4px solid var(--accent);
+            padding: 20px;
+        }
+
+        .max-result p {
+            color: var(--text-secondary);
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            font-weight: 800;
+            margin-bottom: 6px;
+        }
+
+        .max-result strong {
+            display: block;
+            font-size: clamp(2rem, 5vw, 3rem);
+            line-height: 1;
+        }
+
+        .max-result span {
+            color: var(--text-secondary);
+            display: block;
+            margin-top: 8px;
+            font-size: 0.9rem;
+        }
+
+        .max-table {
+            width: 100%;
+            margin-top: 18px;
+            border-collapse: collapse;
+            font-size: 0.86rem;
+        }
+
+        .max-table th,
+        .max-table td {
+            padding: 9px 8px;
+            border-bottom: 1px solid var(--border);
+            text-align: left;
+        }
+
+        .max-table th {
+            color: var(--text-secondary);
+            font-size: 0.72rem;
+            text-transform: uppercase;
+        }
+
+        .max-table td:last-child {
+            color: var(--accent);
+            font-weight: 900;
+            text-align: right;
         }
 
         /* --- Блок: Эксперт --- */
@@ -565,31 +657,6 @@
             white-space: nowrap;
         }
 
-        /* --- Блок: Калькулятор --- */
-        .calc-box {
-            background-color: var(--bg-card);
-            border: 1px solid var(--border);
-            padding: 45px;
-            max-width: 650px;
-            margin: 0 auto;
-        }
-
-        .calc-title {
-            text-align: center;
-            font-size: 2rem;
-        }
-
-        .calc-title .title-line {
-            margin: 15px auto 0;
-        }
-
-        .calc-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-
         .form-group {
             display: flex;
             flex-direction: column;
@@ -603,7 +670,8 @@
             font-weight: 700;
         }
 
-        .form-group input {
+        .form-group input,
+        .form-group select {
             background-color: var(--bg-input);
             border: 1px solid var(--border);
             padding: 14px;
@@ -611,32 +679,17 @@
             font-size: 1.2rem;
             font-weight: 700;
             outline: none;
+            width: 100%;
         }
 
-        .form-group input:focus {
+        .form-group select {
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
             border-color: var(--accent);
-        }
-
-        .calc-result {
-            background-color: var(--bg-main);
-            padding: 25px;
-            border-left: 4px solid var(--accent);
-            text-align: center;
-        }
-
-        .calc-result p {
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            color: var(--text-secondary);
-        }
-
-        .calc-result span {
-            font-size: clamp(1.5rem, 4vw, 2.2rem);
-            font-weight: 900;
-            color: var(--text-primary);
-            display: block;
-            margin-top: 5px;
-            overflow-wrap: anywhere;
         }
 
         /* --- Блок: Медиа --- */
@@ -1031,7 +1084,8 @@
             .records-layout { grid-template-columns: 1fr; }
             .records-visual { min-height: 420px; }
             .proof-strip { grid-template-columns: 1fr; }
-            .expert-grid, .contact-wrapper { grid-template-columns: 1fr; gap: 40px; }
+            .hero-layout, .expert-grid, .contact-wrapper { grid-template-columns: 1fr; gap: 40px; }
+            .hero-max-card { max-width: 620px; }
             .hero h1 { font-size: 3.8rem; }
             .direction-card.wide { grid-column: span 2; }
             .price-card.popular { order: -1; }
@@ -1068,14 +1122,15 @@
                     url('myphoto 2.jpg.jpg') center top / cover no-repeat;
             }
             .hero h1 { font-size: 2.8rem; }
-            .directions-grid, .program-grid, .media-grid, .pricing-grid, .video-grid, .reviews-grid, .loyalty-grid, .calc-grid, .achievements-list { grid-template-columns: 1fr; }
+            .directions-grid, .program-grid, .media-grid, .pricing-grid, .video-grid, .reviews-grid, .loyalty-grid, .achievements-list { grid-template-columns: 1fr; }
+            .max-form { grid-template-columns: 1fr; }
             .records-summary { grid-template-columns: 1fr; }
             .records-table { min-width: 640px; }
             .records-table-wrap { overflow-x: auto; }
             .section-title { font-size: 2rem; }
             .hero-btns { flex-direction: column; }
             .btn { width: 100%; padding-inline: 20px; }
-            .calc-box, .contact-form { padding: 25px; }
+            .hero-max-card, .contact-form { padding: 25px; }
             .direction-card.wide { grid-column: span 1; }
             .expert-photo { height: 390px; }
             .price-card { min-height: auto; }
@@ -1116,14 +1171,57 @@
 
     <section class="hero">
         <div class="container">
-            <div class="hero-content">
-                <div class="hero-badge">Авторская система тренировок</div>
-                <h1>CHKAN<br>BENCH <span>SYSTEM</span></h1>
-                <p>Профессиональный тренировочный подход от Заслуженного Мастера Спорта. Для тех, кто хочет ликвидировать плато, перестроить технику и стабильно увеличивать результат в жиме без травм.</p>
-                <div class="hero-btns">
-                    <a href="#contacts" class="btn btn-primary">Оставить заявку на разбор</a>
-                    <a href="#prices" class="btn btn-secondary">Стоимость ведения</a>
+            <div class="hero-layout">
+                <div class="hero-content">
+                    <div class="hero-badge">Авторская система тренировок</div>
+                    <h1>CHKAN<br>BENCH <span>SYSTEM</span></h1>
+                    <p>Профессиональный тренировочный подход от Заслуженного Мастера Спорта. Для тех, кто хочет ликвидировать плато, перестроить технику и стабильно увеличивать результат в жиме без травм.</p>
+                    <div class="hero-btns">
+                        <a href="#contacts" class="btn btn-primary">Оставить заявку на разбор</a>
+                        <a href="#prices" class="btn btn-secondary">Стоимость ведения</a>
+                    </div>
                 </div>
+
+                <aside class="hero-max-card" aria-label="Калькулятор одноповторного максимума">
+                    <h2>Калькулятор 1ПМ</h2>
+                    <p>Введите рабочий вес и повторения. Сайт покажет расчет одноповторного максимума и тренировочные проценты.</p>
+                    <div class="max-form">
+                        <div class="form-group">
+                            <label for="rm-weight">Вес, кг</label>
+                            <input type="number" id="rm-weight" value="120" min="1" step="0.5">
+                        </div>
+                        <div class="form-group">
+                            <label for="rm-reps">Повторения</label>
+                            <input type="number" id="rm-reps" value="5" min="1" max="20" step="1">
+                        </div>
+                        <div class="form-group full">
+                            <label for="rm-formula">Формула расчета</label>
+                            <select id="rm-formula">
+                                <option value="average" selected>Среднее по 5 формулам</option>
+                                <option value="epley">Epley</option>
+                                <option value="brzycki">Brzycki</option>
+                                <option value="lombardi">Lombardi</option>
+                                <option value="oconner">O'Conner</option>
+                                <option value="mayhew">Mayhew</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="max-result">
+                        <p>Расчетный максимум</p>
+                        <strong id="rm-result">140 кг</strong>
+                        <span id="rm-spread">Диапазон формул: 135-145 кг</span>
+                    </div>
+                    <table class="max-table" aria-label="Рабочие проценты от одноповторного максимума">
+                        <thead>
+                            <tr>
+                                <th>Зона</th>
+                                <th>Процент</th>
+                                <th>Вес</th>
+                            </tr>
+                        </thead>
+                        <tbody id="rm-zones"></tbody>
+                    </table>
+                </aside>
             </div>
         </div>
     </section>
@@ -1338,32 +1436,6 @@
         </div>
     </section>
 
-    <section>
-        <div class="container">
-            <h2 class="section-title calc-title">Расчет планируемого прогресса <span class="title-line"></span></h2>
-            <div class="calc-box">
-                <div class="calc-grid">
-                    <div class="form-group">
-                        <label for="current-max">Сейчас (кг)</label>
-                        <input type="number" id="current-max" value="100" min="0">
-                    </div>
-                    <div class="form-group">
-                        <label for="target-max">Цель (кг)</label>
-                        <input type="number" id="target-max" value="112" min="0">
-                    </div>
-                    <div class="form-group">
-                        <label for="weeks">Недель цикла</label>
-                        <input type="number" id="weeks" value="12" min="1">
-                    </div>
-                </div>
-                <div class="calc-result">
-                    <p>Необходимый средний прирост в неделю:</p>
-                    <span id="weekly-progress">1.00 кг</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <section id="media">
         <div class="container">
             <h2 class="section-title">Разборы и рекорды <span class="title-line"></span></h2>
@@ -1528,33 +1600,65 @@
     </footer>
 
     <script>
-        const currentInput = document.getElementById('current-max');
-        const targetInput = document.getElementById('target-max');
-        const weeksInput = document.getElementById('weeks');
-        const resultSpan = document.getElementById('weekly-progress');
+        const rmWeightInput = document.getElementById('rm-weight');
+        const rmRepsInput = document.getElementById('rm-reps');
+        const rmFormulaSelect = document.getElementById('rm-formula');
+        const rmResult = document.getElementById('rm-result');
+        const rmSpread = document.getElementById('rm-spread');
+        const rmZones = document.getElementById('rm-zones');
         const menuButton = document.querySelector('.menu-toggle');
         const navLinks = document.querySelector('.nav-links');
         const contactForm = document.querySelector('.contact-form');
         const formStatus = document.querySelector('.form-status');
 
-        function calculateProgress() {
-            const current = parseFloat(currentInput.value) || 0;
-            const target = parseFloat(targetInput.value) || 0;
-            const weeks = Math.max(parseInt(weeksInput.value) || 1, 1);
-
-            if (target <= current) {
-                resultSpan.textContent = "0.00 кг (цель достигнута)";
-                return;
-            }
-
-            const diff = target - current;
-            const perWeek = diff / weeks;
-            resultSpan.textContent = perWeek.toFixed(2) + " кг";
+        function roundToHalf(value) {
+            return Math.round(value * 2) / 2;
         }
 
-        currentInput.addEventListener('input', calculateProgress);
-        targetInput.addEventListener('input', calculateProgress);
-        weeksInput.addEventListener('input', calculateProgress);
+        function formatKg(value) {
+            return roundToHalf(value).toLocaleString('ru-RU', {
+                maximumFractionDigits: 1
+            }) + ' кг';
+        }
+
+        function calculateOneRepMax() {
+            const weight = Math.max(parseFloat(rmWeightInput.value) || 0, 0);
+            const reps = Math.min(Math.max(parseInt(rmRepsInput.value, 10) || 1, 1), 20);
+
+            const estimates = {
+                epley: weight * (1 + reps / 30),
+                brzycki: reps < 37 ? weight * (36 / (37 - reps)) : weight,
+                lombardi: weight * Math.pow(reps, 0.10),
+                oconner: weight * (1 + reps * 0.025),
+                mayhew: (100 * weight) / (52.2 + 41.9 * Math.exp(-0.055 * reps))
+            };
+
+            const values = Object.values(estimates).filter(Number.isFinite);
+            const selected = rmFormulaSelect.value === 'average'
+                ? values.reduce((sum, value) => sum + value, 0) / values.length
+                : estimates[rmFormulaSelect.value];
+            const min = Math.min(...values);
+            const max = Math.max(...values);
+
+            rmResult.textContent = formatKg(selected);
+            rmSpread.textContent = 'Диапазон формул: ' + formatKg(min) + ' - ' + formatKg(max);
+
+            const zones = [
+                ['Разминка', 60],
+                ['Объем', 70],
+                ['Сила', 80],
+                ['Тяжелый подход', 90]
+            ];
+
+            rmZones.innerHTML = zones.map(([label, percent]) => {
+                const zoneWeight = selected * percent / 100;
+                return `<tr><td>${label}</td><td>${percent}%</td><td>${formatKg(zoneWeight)}</td></tr>`;
+            }).join('');
+        }
+
+        rmWeightInput.addEventListener('input', calculateOneRepMax);
+        rmRepsInput.addEventListener('input', calculateOneRepMax);
+        rmFormulaSelect.addEventListener('change', calculateOneRepMax);
 
         menuButton.addEventListener('click', () => {
             const isOpen = document.body.classList.toggle('menu-open');
@@ -1575,7 +1679,7 @@
             contactForm.reset();
         });
 
-        calculateProgress();
+        calculateOneRepMax();
     </script>
 </body>
 </html>
