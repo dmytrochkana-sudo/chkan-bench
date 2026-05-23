@@ -14,6 +14,7 @@
             --text-secondary: #a0a5b5;
             --accent: #e53935;
             --accent-hover: #b71c1c;
+            --accent-soft: rgba(229, 57, 53, 0.12);
             --border: #222533;
             --font-main: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
         }
@@ -26,6 +27,7 @@
 
         html {
             scroll-behavior: smooth;
+            scroll-padding-top: 90px;
         }
 
         body {
@@ -52,14 +54,17 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
+            min-height: 52px;
             padding: 16px 32px;
             font-weight: 700;
             text-transform: uppercase;
             font-size: 0.85rem;
-            letter-spacing: 1px;
+            letter-spacing: 0;
             border: none;
             cursor: pointer;
             transition: all 0.3s ease;
+            text-align: center;
+            overflow-wrap: anywhere;
         }
 
         .btn-primary {
@@ -89,8 +94,12 @@
             font-size: 2.5rem;
             text-transform: uppercase;
             font-weight: 900;
-            letter-spacing: 1px;
+            letter-spacing: 0;
             margin-bottom: 50px;
+        }
+
+        .section-title span {
+            color: var(--accent);
         }
 
         .title-line {
@@ -128,7 +137,7 @@
         .logo {
             font-weight: 900;
             font-size: 1.3rem;
-            letter-spacing: 1px;
+            letter-spacing: 0;
             text-transform: uppercase;
         }
 
@@ -144,7 +153,7 @@
         .nav-links a {
             font-size: 0.85rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 0;
             font-weight: 700;
             color: var(--text-secondary);
             transition: color 0.3s;
@@ -154,14 +163,62 @@
             color: var(--text-primary);
         }
 
+        .menu-toggle {
+            display: none;
+            width: 44px;
+            height: 44px;
+            border: 1px solid var(--border);
+            background: var(--bg-card);
+            color: var(--text-primary);
+            cursor: pointer;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .menu-toggle span {
+            width: 20px;
+            height: 2px;
+            background: currentColor;
+            display: block;
+            transition: transform 0.25s ease, opacity 0.25s ease;
+        }
+
+        body.menu-open .menu-toggle span:nth-child(1) {
+            transform: translateY(7px) rotate(45deg);
+        }
+
+        body.menu-open .menu-toggle span:nth-child(2) {
+            opacity: 0;
+        }
+
+        body.menu-open .menu-toggle span:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg);
+        }
+
         /* --- Главный экран --- */
         .hero {
             min-height: 100vh;
             display: flex;
             align-items: center;
-            background: radial-gradient(circle at 85% 30%, rgba(229, 57, 53, 0.18) 0%, transparent 60%), 
-                        linear-gradient(135deg, #0b0c10 0%, #12131c 100%);
+            background:
+                linear-gradient(90deg, rgba(11, 12, 16, 0.96) 0%, rgba(11, 12, 16, 0.82) 48%, rgba(11, 12, 16, 0.5) 100%),
+                url('myphoto 2.jpg.jpg') right center / cover no-repeat;
             padding-top: 100px;
+            position: relative;
+            isolation: isolate;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 120px;
+            background: linear-gradient(to top, var(--bg-main), transparent);
+            z-index: -1;
         }
 
         .hero-content {
@@ -177,7 +234,7 @@
             font-size: 0.8rem;
             text-transform: uppercase;
             font-weight: 700;
-            letter-spacing: 2px;
+            letter-spacing: 0;
             margin-bottom: 25px;
         }
 
@@ -187,7 +244,7 @@
             text-transform: uppercase;
             line-height: 1.05;
             margin-bottom: 20px;
-            letter-spacing: -1px;
+            letter-spacing: 0;
         }
 
         .hero h1 span {
@@ -214,28 +271,43 @@
             align-items: center;
         }
 
-        .expert-img-container {
-            width: 100%;
-            height: 550px;
+        .expert-photo {
+            background: linear-gradient(135deg, #1a1b26 0%, #12131c 100%);
             border: 1px solid var(--border);
+            height: 500px;
+            position: relative;
             overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: var(--bg-card);
         }
 
-        .expert-img-container img {
+        .expert-photo img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            object-position: center top;
+            display: block;
+            filter: saturate(0.95) contrast(1.05);
+        }
+
+        .expert-photo::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(11,12,16,0.65), transparent 55%);
+            pointer-events: none;
         }
 
         .expert-text p {
             color: var(--text-secondary);
             font-size: 1.1rem;
             margin-bottom: 25px;
+        }
+
+        .expert-note {
+            background: var(--accent-soft);
+            border-left: 3px solid var(--accent);
+            padding: 18px 20px;
+            margin: 28px 0;
+            color: var(--text-primary);
+            font-weight: 700;
         }
 
         .achievements-list {
@@ -249,6 +321,7 @@
             background-color: var(--bg-card);
             padding: 20px;
             border-left: 3px solid var(--accent);
+            min-height: 132px;
         }
 
         .achieve-item .num {
@@ -265,9 +338,10 @@
             text-transform: uppercase;
             font-weight: 600;
             margin-top: 5px;
+            display: block;
         }
 
-        /* --- Блок: Направления --- */
+        /* --- Блок: Направления (Специализация) --- */
         .directions-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -279,6 +353,7 @@
             border: 1px solid var(--border);
             padding: 40px 30px;
             transition: all 0.3s;
+            min-height: 260px;
         }
 
         .direction-card:hover {
@@ -291,7 +366,11 @@
             text-transform: uppercase;
             margin-bottom: 15px;
             font-weight: 800;
-            letter-spacing: 0.5px;
+            letter-spacing: 0;
+        }
+
+        .direction-card.wide {
+            grid-column: span 2;
         }
 
         .direction-card p {
@@ -299,7 +378,41 @@
             font-size: 0.95rem;
         }
 
-        /* --- Блок: Тарифы / Стоимость --- */
+        /* --- Блок: Программа --- */
+        .program-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .program-day {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 30px;
+            min-height: 230px;
+        }
+
+        .day-title {
+            color: var(--accent);
+            font-weight: 800;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .program-day h3 {
+            font-size: 1.3rem;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        .program-day p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* --- Блок: Стоимость --- */
         .pricing-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -310,44 +423,43 @@
         .price-card {
             background-color: var(--bg-card);
             border: 1px solid var(--border);
-            padding: 45px 35px;
+            padding: 42px 34px;
             display: flex;
             flex-direction: column;
             position: relative;
+            min-height: 520px;
         }
 
         .price-card.popular {
             border-color: var(--accent);
-            transform: scale(1.03);
+            box-shadow: 0 18px 45px rgba(229, 57, 53, 0.12);
         }
 
         .badge-popular {
             position: absolute;
             top: -15px;
-            left: 50%;
-            transform: translateX(-50%);
+            left: 34px;
             background-color: var(--accent);
             color: #fff;
-            padding: 4px 15px;
+            padding: 5px 14px;
             font-size: 0.75rem;
             font-weight: 800;
             text-transform: uppercase;
-            letter-spacing: 1px;
         }
 
         .price-card h3 {
-            font-size: 1.5rem;
+            font-size: 1.45rem;
             text-transform: uppercase;
             margin-bottom: 10px;
         }
 
         .price-value {
-            font-size: 2.2rem;
+            font-size: 1.9rem;
             font-weight: 900;
             color: #fff;
-            margin-bottom: 25px;
+            margin-bottom: 24px;
             border-bottom: 1px solid var(--border);
-            padding-bottom: 15px;
+            padding-bottom: 16px;
         }
 
         .price-features {
@@ -357,15 +469,449 @@
             display: flex;
             flex-direction: column;
             gap: 12px;
-            margin-bottom: 35px;
+            margin-bottom: 34px;
             flex-grow: 1;
         }
 
+        .price-features li {
+            position: relative;
+            padding-left: 24px;
+        }
+
         .price-features li::before {
-            content: "✓ ";
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.65em;
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+        }
+
+        /* --- Блок: Рекорды --- */
+        .records-layout {
+            display: grid;
+            grid-template-columns: 0.85fr 1.15fr;
+            gap: 40px;
+            align-items: stretch;
+        }
+
+        .records-visual {
+            min-height: 560px;
+            border: 1px solid var(--border);
+            background: url('records-certificates.jpg') center / cover no-repeat;
+            position: relative;
+        }
+
+        .records-visual::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(11,12,16,0.78), transparent 58%);
+        }
+
+        .records-summary {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+            margin-bottom: 28px;
+        }
+
+        .record-stat {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 22px;
+        }
+
+        .record-stat strong {
+            display: block;
+            font-size: 2rem;
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .record-stat span {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .records-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            overflow: hidden;
+        }
+
+        .records-table th,
+        .records-table td {
+            padding: 15px;
+            border-bottom: 1px solid var(--border);
+            text-align: left;
+            vertical-align: top;
+        }
+
+        .records-table th {
+            color: var(--text-secondary);
+            font-size: 0.78rem;
+            text-transform: uppercase;
+        }
+
+        .records-table td:last-child {
             color: var(--accent);
-            font-weight: bold;
-            margin-right: 5px;
+            font-weight: 900;
+            white-space: nowrap;
+        }
+
+        /* --- Блок: Калькулятор --- */
+        .calc-box {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 45px;
+            max-width: 650px;
+            margin: 0 auto;
+        }
+
+        .calc-title {
+            text-align: center;
+            font-size: 2rem;
+        }
+
+        .calc-title .title-line {
+            margin: 15px auto 0;
+        }
+
+        .calc-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-group label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            font-weight: 700;
+        }
+
+        .form-group input {
+            background-color: var(--bg-input);
+            border: 1px solid var(--border);
+            padding: 14px;
+            color: var(--text-primary);
+            font-size: 1.2rem;
+            font-weight: 700;
+            outline: none;
+        }
+
+        .form-group input:focus {
+            border-color: var(--accent);
+        }
+
+        .calc-result {
+            background-color: var(--bg-main);
+            padding: 25px;
+            border-left: 4px solid var(--accent);
+            text-align: center;
+        }
+
+        .calc-result p {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+        }
+
+        .calc-result span {
+            font-size: clamp(1.5rem, 4vw, 2.2rem);
+            font-weight: 900;
+            color: var(--text-primary);
+            display: block;
+            margin-top: 5px;
+            overflow-wrap: anywhere;
+        }
+
+        /* --- Блок: Медиа --- */
+        .media-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .media-card {
+            position: relative;
+            background-color: var(--bg-card);
+            border: 1px solid var(--border);
+            height: 240px;
+            display: flex;
+            align-items: flex-end;
+            padding: 25px;
+            overflow: hidden;
+            cursor: pointer;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .media-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to top, rgba(11,12,16,0.95) 0%, rgba(11,12,16,0.3) 100%);
+            z-index: 1;
+            transition: opacity 0.3s;
+        }
+
+        .media-card:hover::before {
+            background: linear-gradient(to top, rgba(229,57,53,0.85) 0%, rgba(11,12,16,0.4) 100%);
+        }
+
+        .media-card:nth-child(1) {
+            background-image: url('records-certificates.jpg');
+        }
+
+        .media-card:nth-child(2) {
+            background-image: url('myphoto 2.jpg.jpg');
+        }
+
+        .media-card:nth-child(3) {
+            background-image: url('competition-medals.jpg');
+        }
+
+        .media-card:nth-child(4) {
+            background-image: url('competition-cups.jpg');
+        }
+
+        .media-card h4 {
+            position: relative;
+            z-index: 2;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+        }
+
+        .proof-strip {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 24px;
+            margin-top: 24px;
+        }
+
+        .proof-image {
+            min-height: 320px;
+            border: 1px solid var(--border);
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .proof-image:first-child {
+            background-image: url('competition-cups.jpg');
+        }
+
+        .proof-image:last-child {
+            background-image: url('competition-medals.jpg');
+        }
+
+        .gallery-cta {
+            display: flex;
+            justify-content: center;
+            margin-top: 28px;
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            margin-top: 34px;
+        }
+
+        .video-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .video-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent);
+        }
+
+        .video-thumb {
+            position: relative;
+            aspect-ratio: 16 / 9;
+            background: var(--bg-main) center / cover no-repeat;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .video-thumb::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(11,12,16,0.86), rgba(11,12,16,0.16));
+        }
+
+        .video-card:nth-child(1) .video-thumb {
+            background-image: url('myphoto 2.jpg.jpg');
+        }
+
+        .video-card:nth-child(2) .video-thumb {
+            background-image: url('competition-cups.jpg');
+        }
+
+        .video-card:nth-child(3) .video-thumb {
+            background-image: url('records-certificates.jpg');
+        }
+
+        .video-card:nth-child(4) .video-thumb {
+            background-image: url('competition-medals.jpg');
+        }
+
+        .play-mark {
+            position: relative;
+            z-index: 1;
+            width: 68px;
+            height: 68px;
+            border-radius: 50%;
+            background: var(--accent);
+            box-shadow: 0 12px 35px rgba(229, 57, 53, 0.35);
+        }
+
+        .play-mark::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 53%;
+            transform: translate(-50%, -50%);
+            border-top: 13px solid transparent;
+            border-bottom: 13px solid transparent;
+            border-left: 19px solid #fff;
+        }
+
+        .video-card-content {
+            padding: 22px;
+        }
+
+        .video-card h3 {
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .video-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .video-link {
+            display: inline-flex;
+            margin-top: 18px;
+            color: var(--accent);
+            font-weight: 800;
+            text-transform: uppercase;
+            font-size: 0.82rem;
+        }
+
+        /* --- Блок: Отзывы --- */
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .review-card {
+            background-color: var(--bg-card);
+            padding: 40px;
+            border: 1px solid var(--border);
+            min-height: 330px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .review-head {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .review-avatar {
+            width: 58px;
+            height: 58px;
+            display: grid;
+            place-items: center;
+            background: var(--accent);
+            color: #fff;
+            font-weight: 900;
+            font-size: 1.25rem;
+        }
+
+        .review-meta strong {
+            display: block;
+            text-transform: uppercase;
+            font-size: 0.92rem;
+        }
+
+        .review-meta span {
+            color: var(--text-secondary);
+            font-size: 0.86rem;
+        }
+
+        .review-card p {
+            font-style: italic;
+            color: var(--text-primary);
+            font-size: 1.05rem;
+            margin-bottom: 25px;
+            flex-grow: 1;
+        }
+
+        .review-author {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            font-weight: 700;
+        }
+
+        .loyalty-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 32px;
+        }
+
+        .loyalty-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 32px;
+            min-height: 260px;
+        }
+
+        .loyalty-card strong {
+            color: var(--accent);
+            display: block;
+            font-size: 2rem;
+            line-height: 1;
+            margin-bottom: 18px;
+        }
+
+        .loyalty-card h3 {
+            text-transform: uppercase;
+            margin-bottom: 14px;
+            font-size: 1.15rem;
+        }
+
+        .loyalty-card p {
+            color: var(--text-secondary);
+            font-size: 0.98rem;
         }
 
         /* --- Блок: Контакты --- */
@@ -382,4 +928,654 @@
         }
 
         .contact-methods {
-            margin-bottom:
+            display: grid;
+            gap: 14px;
+            margin-bottom: 30px;
+        }
+
+        .method-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 16px 18px;
+            font-size: 1rem;
+            font-weight: 700;
+        }
+
+        .method-item span {
+            color: var(--accent);
+            margin-right: 8px;
+        }
+
+        .btn-tg {
+            background-color: #2481cc;
+            color: #fff;
+            width: 100%;
+            max-width: 320px;
+        }
+
+        .btn-tg:hover {
+            background-color: #1a66a4;
+            transform: translateY(-2px);
+        }
+
+        .payment-info {
+            margin-top: 30px;
+            background-color: rgba(255,255,255,0.02);
+            padding: 20px;
+            border: 1px dashed var(--border);
+        }
+
+        .payment-info h4 {
+            font-size: 1rem;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .payment-info p {
+            font-size: 0.9rem;
+            margin-bottom: 0;
+        }
+
+        .contact-form {
+            background-color: var(--bg-card);
+            padding: 40px;
+            border: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .form-status {
+            min-height: 24px;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .form-status.is-success {
+            color: #8fd694;
+        }
+
+        .contact-form input, .contact-form select {
+            background-color: var(--bg-input);
+            border: 1px solid var(--border);
+            padding: 15px;
+            color: #fff;
+            font-size: 1rem;
+            outline: none;
+            width: 100%;
+        }
+
+        .contact-form select {
+            cursor: pointer;
+            appearance: none;
+        }
+
+        .contact-form input:focus, .contact-form select:focus {
+            border-color: var(--accent);
+        }
+
+        /* --- Футер --- */
+        footer {
+            padding: 40px 0;
+            background-color: #06070a;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* --- Адаптивность --- */
+        @media (max-width: 1024px) {
+            .directions-grid { grid-template-columns: 1fr 1fr; }
+            .program-grid, .media-grid, .pricing-grid, .video-grid { grid-template-columns: repeat(2, 1fr); }
+            .records-layout { grid-template-columns: 1fr; }
+            .records-visual { min-height: 420px; }
+            .proof-strip { grid-template-columns: 1fr; }
+            .expert-grid, .contact-wrapper { grid-template-columns: 1fr; gap: 40px; }
+            .hero h1 { font-size: 3.8rem; }
+            .direction-card.wide { grid-column: span 2; }
+            .price-card.popular { order: -1; }
+        }
+
+        @media (max-width: 768px) {
+            section { padding: 70px 0; }
+            .header-wrap { height: 68px; }
+            .menu-toggle { display: inline-flex; }
+            .nav-links {
+                position: absolute;
+                top: 68px;
+                left: 0;
+                width: 100%;
+                display: grid;
+                gap: 0;
+                background: rgba(11, 12, 16, 0.98);
+                border-bottom: 1px solid var(--border);
+                transform: translateY(-130%);
+                transition: transform 0.25s ease;
+                padding: 10px 20px 18px;
+            }
+            body.menu-open .nav-links {
+                transform: translateY(0);
+            }
+            .nav-links a {
+                padding: 14px 0;
+                border-bottom: 1px solid var(--border);
+            }
+            .hero {
+                min-height: 86vh;
+                background:
+                    linear-gradient(180deg, rgba(11, 12, 16, 0.68) 0%, rgba(11, 12, 16, 0.95) 58%, #0b0c10 100%),
+                    url('myphoto 2.jpg.jpg') center top / cover no-repeat;
+            }
+            .hero h1 { font-size: 2.8rem; }
+            .directions-grid, .program-grid, .media-grid, .pricing-grid, .video-grid, .reviews-grid, .loyalty-grid, .calc-grid, .achievements-list { grid-template-columns: 1fr; }
+            .records-summary { grid-template-columns: 1fr; }
+            .records-table { min-width: 640px; }
+            .records-table-wrap { overflow-x: auto; }
+            .section-title { font-size: 2rem; }
+            .hero-btns { flex-direction: column; }
+            .btn { width: 100%; padding-inline: 20px; }
+            .calc-box, .contact-form { padding: 25px; }
+            .direction-card.wide { grid-column: span 1; }
+            .expert-photo { height: 390px; }
+            .price-card { min-height: auto; }
+        }
+
+        @media (max-width: 420px) {
+            .container { padding: 0 16px; }
+            .logo { font-size: 1rem; }
+            .hero h1 { font-size: 2.25rem; }
+            .hero p { font-size: 1rem; }
+            .section-title { font-size: 1.65rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container header-wrap">
+            <a href="#" class="logo">CHKAN BENCH<span>SYSTEM</span></a>
+            <button class="menu-toggle" type="button" aria-label="Открыть меню" aria-controls="site-nav" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav class="nav-links" id="site-nav">
+                <a href="#about">Об авторе</a>
+                <a href="#directions">Направления</a>
+                <a href="#program">Структура</a>
+                <a href="#prices">Стоимость</a>
+                <a href="#records">Рекорды</a>
+                <a href="#media">Медиа</a>
+                <a href="gallery.html">Галерея</a>
+                <a href="#loyalty">Бонусы</a>
+                <a href="#contacts">Запись</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">Авторская система тренировок</div>
+                <h1>CHKAN<br>BENCH <span>SYSTEM</span></h1>
+                <p>Профессиональный тренировочный подход от Заслуженного Мастера Спорта. Для тех, кто хочет ликвидировать плато, перестроить технику и стабильно увеличивать результат в жиме без травм.</p>
+                <div class="hero-btns">
+                    <a href="#contacts" class="btn btn-primary">Оставить заявку на разбор</a>
+                    <a href="#prices" class="btn btn-secondary">Стоимость ведения</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">Дмитрий Чкана <span class="title-line"></span></h2>
+            <div class="expert-grid">
+                <figure class="expert-photo">
+                    <img src="myphoto.jpg.jpg" alt="Дмитрий Чкана с наградами">
+                </figure>
+                <div class="expert-text">
+                    <p>В силовом спорте не работают случайные схемы из интернета и слепое копирование чужих планов. Высокий результат на помосте — это всегда строгая математика нагрузок, знание биомеханики и выверенная до миллиметра траектория движения.</p>
+                    <p>CHKAN BENCH SYSTEM — это квинтэссенция моего многолетнего соревновательного опыта, объединенная в жесткую и рабочую систему подготовки. Здесь нет маркетинговой воды, только чистая практика, которая выведет вашу силу на новый уровень.</p>
+                    <div class="expert-note">Дмитрий Чкана — заслуженный мастер спорта, обладатель более 20 мировых рекордов и руководитель спортивного направления, где сила рассматривается не только как результат, но и как дисциплина, воля и ответственность.</div>
+                    
+                    <div class="achievements-list">
+                        <div class="achieve-item">
+                            <span class="num">ЗМС</span>
+                            <span class="label">Заслуженный мастер спорта по народному жиму</span>
+                        </div>
+                        <div class="achieve-item">
+                            <span class="num">28</span>
+                            <span class="label">Записей в сводке мировых рекордов</span>
+                        </div>
+                        <div class="achieve-item">
+                            <span class="num">15+ лет</span>
+                            <span class="label">Опыта на соревновательных помостах</span>
+                        </div>
+                        <div class="achieve-item">
+                            <span class="num">100%</span>
+                            <span class="label">Научный и безопасный подход</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="directions">
+        <div class="container">
+            <h2 class="section-title">Направления подготовки <span class="title-line"></span></h2>
+            <div class="directions-grid">
+                <div class="direction-card">
+                    <h3>Народный жим</h3>
+                    <p>Работа на предельную выносливость и многоповторный максимум. Настройка идеальной экономизации движения под ваш вес штанги.</p>
+                </div>
+                <div class="direction-card">
+                    <h3>Классический жим</h3>
+                    <p>Развитие абсолютной силы на 1 повторение. Работа над мощным срывом, жестким мостом и ликвидацией «мертвых точек» амплитуды.</p>
+                </div>
+                <div class="direction-card">
+                    <h3>Военный жим</h3>
+                    <p>Жим лежа с поднятыми ногами на скамью. Исключение читинга и работы ног, мощное развитие плечевого пояса и срыва грудными.</p>
+                </div>
+                <div class="direction-card">
+                    <h3>Жим в экипировке</h3>
+                    <p>Специфическая работа в жимовых майках (однослой/многослой) или софт-экипировке. Обучение работе в фазе дожима и удержанию траектории.</p>
+                </div>
+                <div class="direction-card wide">
+                    <h3>Общая физическая подготовка (ОФП)</h3>
+                    <p>Укрепление мышц-стабилизаторов, проработка антагонистов (спина, ротаторная манжета плеча, трицепс). База для минимизации рисков травм и закладывания фундамента под тяжелые веса.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="program">
+        <div class="container">
+            <h2 class="section-title">Принцип периодизации <span class="title-line"></span></h2>
+            <div class="program-grid">
+                <div class="program-day">
+                    <span class="day-title">Этап 1</span>
+                    <h3>Тяжелая работа</h3>
+                    <p>Развитие ЦНС и absolute силовых показателей. Низкий объем, высокий тоннаж.</p>
+                </div>
+                <div class="program-day">
+                    <span class="day-title">Этап 2</span>
+                    <h3>Скорость и углы</h3>
+                    <p>Взрывная работа со штангой. Отработка фазы старта и идеального тайминга.</p>
+                </div>
+                <div class="program-day">
+                    <span class="day-title">Этап 3</span>
+                    <h3>Объемный тренинг</h3>
+                    <p>Гипертрофия целевых групп, укрепление связочного аппарата, накопление потенциала.</p>
+                </div>
+                <div class="program-day">
+                    <span class="day-title">Этап 4</span>
+                    <h3>Подсобка и ОФП</h3>
+                    <p>Устранение дисбалансов. Разгрузка суставов перед новым силовым микроциклом.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="prices">
+        <div class="container">
+            <h2 class="section-title">Варианты и стоимость ведения <span class="title-line"></span></h2>
+            <div class="pricing-grid">
+                <div class="price-card">
+                    <h3>Техника</h3>
+                    <div class="price-value">3 000 ₽</div>
+                    <ul class="price-features">
+                        <li>Разбор базовых ошибок</li>
+                        <li>Постановка техники жима</li>
+                        <li>Коррекция моста и траектории</li>
+                        <li>Рекомендации по подсобным упражнениям</li>
+                    </ul>
+                    <a href="#contacts" class="btn btn-secondary">Заказать аудит</a>
+                </div>
+
+                <div class="price-card popular">
+                    <div class="badge-popular">Популярно</div>
+                    <h3>Ведение + питание</h3>
+                    <div class="price-value">5 000 ₽</div>
+                    <ul class="price-features">
+                        <li>Ведение тренировок</li>
+                        <li>Индивидуальный тренировочный цикл</li>
+                        <li>Постановка техники по видео</li>
+                        <li>Советы по питанию и добавкам</li>
+                        <li>Прямая связь в Telegram</li>
+                    </ul>
+                    <a href="#contacts" class="btn btn-primary">Начать подготовку</a>
+                </div>
+
+                <div class="price-card">
+                    <h3>Соревновательный</h3>
+                    <div class="price-value">По запросу</div>
+                    <ul class="price-features">
+                        <li>Подводка к старту</li>
+                        <li>Вывод на пик силы</li>
+                        <li>Секреты соревновательной подготовки</li>
+                        <li>Приоритетный разбор видео</li>
+                    </ul>
+                    <a href="#contacts" class="btn btn-secondary">Обсудить старт</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="records">
+        <div class="container">
+            <h2 class="section-title">Мировые рекорды <span class="title-line"></span></h2>
+            <div class="records-layout">
+                <div class="records-visual" aria-label="Сертификаты рекордов Дмитрия Чканы"></div>
+                <div>
+                    <div class="records-summary">
+                        <div class="record-stat">
+                            <strong>28</strong>
+                            <span>записей в сводке рекордов</span>
+                        </div>
+                        <div class="record-stat">
+                            <strong>300 кг</strong>
+                            <span>жим в софт-экипировке</span>
+                        </div>
+                        <div class="record-stat">
+                            <strong>181 кг</strong>
+                            <span>военный жим</span>
+                        </div>
+                        <div class="record-stat">
+                            <strong>252</strong>
+                            <span>русский жим 55 PRO</span>
+                        </div>
+                    </div>
+
+                    <div class="records-table-wrap">
+                        <table class="records-table">
+                            <thead>
+                                <tr>
+                                    <th>Дата</th>
+                                    <th>Номинация</th>
+                                    <th>Категория</th>
+                                    <th>Результат</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>08.10.2021</td>
+                                    <td>Русский жим 55 PRO</td>
+                                    <td>Открытая, 75 кг</td>
+                                    <td>252</td>
+                                </tr>
+                                <tr>
+                                    <td>07.04.2024</td>
+                                    <td>Военный жим</td>
+                                    <td>Сабветераны, 100 кг</td>
+                                    <td>181 кг</td>
+                                </tr>
+                                <tr>
+                                    <td>21.09.2025</td>
+                                    <td>Военный жим лежа</td>
+                                    <td>Сабветераны, 99,1 кг</td>
+                                    <td>185 кг</td>
+                                </tr>
+                                <tr>
+                                    <td>Сводка</td>
+                                    <td>Жим в софт-экипировке</td>
+                                    <td>Специальная подготовка</td>
+                                    <td>300 кг</td>
+                                </tr>
+                                <tr>
+                                    <td>Сводка</td>
+                                    <td>Народный жим</td>
+                                    <td>70 кг</td>
+                                    <td>256</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <h2 class="section-title calc-title">Расчет планируемого прогресса <span class="title-line"></span></h2>
+            <div class="calc-box">
+                <div class="calc-grid">
+                    <div class="form-group">
+                        <label for="current-max">Сейчас (кг)</label>
+                        <input type="number" id="current-max" value="100" min="0">
+                    </div>
+                    <div class="form-group">
+                        <label for="target-max">Цель (кг)</label>
+                        <input type="number" id="target-max" value="112" min="0">
+                    </div>
+                    <div class="form-group">
+                        <label for="weeks">Недель цикла</label>
+                        <input type="number" id="weeks" value="12" min="1">
+                    </div>
+                </div>
+                <div class="calc-result">
+                    <p>Необходимый средний прирост в неделю:</p>
+                    <span id="weekly-progress">1.00 кг</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="media">
+        <div class="container">
+            <h2 class="section-title">Разборы и рекорды <span class="title-line"></span></h2>
+            <div class="media-grid">
+                <a class="media-card" href="gallery.html"><h4>Сертификаты рекордов</h4></a>
+                <a class="media-card" href="gallery.html"><h4>Соревновательный помост</h4></a>
+                <a class="media-card" href="gallery.html"><h4>Медали чемпионата</h4></a>
+                <a class="media-card" href="gallery.html"><h4>Кубки и награды</h4></a>
+            </div>
+            <div class="proof-strip" aria-label="Фотографии наград и соревнований">
+                <a class="proof-image" href="gallery.html" aria-label="Открыть галерею кубков и наград"></a>
+                <a class="proof-image" href="gallery.html" aria-label="Открыть галерею медалей"></a>
+            </div>
+            <div class="gallery-cta">
+                <a href="gallery.html" class="btn btn-primary">Открыть полную галерею</a>
+            </div>
+            <div class="video-grid">
+                <article class="video-card">
+                    <a class="video-thumb" href="https://www.youtube.com/watch?v=6jVWUsRGSxY" target="_blank" rel="noopener" aria-label="Смотреть видео на YouTube"><span class="play-mark"></span></a>
+                    <div class="video-card-content">
+                        <h3>Практика жима</h3>
+                        <p>Видео для блока доверия: живой формат лучше показывает подход, чем сухое описание методики.</p>
+                        <a class="video-link" href="https://www.youtube.com/watch?v=6jVWUsRGSxY" target="_blank" rel="noopener">Смотреть на YouTube</a>
+                    </div>
+                </article>
+                <article class="video-card">
+                    <a class="video-thumb" href="https://www.youtube.com/watch?v=JaQM3i_sRMc" target="_blank" rel="noopener" aria-label="Смотреть видео на YouTube"><span class="play-mark"></span></a>
+                    <div class="video-card-content">
+                        <h3>Соревновательный опыт</h3>
+                        <p>Подходит для посетителей, которым важно увидеть не обещания, а реальную работу на помосте.</p>
+                        <a class="video-link" href="https://www.youtube.com/watch?v=JaQM3i_sRMc" target="_blank" rel="noopener">Смотреть на YouTube</a>
+                    </div>
+                </article>
+                <article class="video-card">
+                    <a class="video-thumb" href="https://www.youtube.com/watch?v=7a2JLbjDOjM&t=1751s" target="_blank" rel="noopener" aria-label="Смотреть видео на YouTube с таймкода"><span class="play-mark"></span></a>
+                    <div class="video-card-content">
+                        <h3>Фрагмент с таймкодом</h3>
+                        <p>Ссылка открывается сразу с нужного момента, чтобы человек не искал важный эпизод вручную.</p>
+                        <a class="video-link" href="https://www.youtube.com/watch?v=7a2JLbjDOjM&t=1751s" target="_blank" rel="noopener">Смотреть на YouTube</a>
+                    </div>
+                </article>
+                <article class="video-card">
+                    <a class="video-thumb" href="https://www.youtube.com/watch?v=aJ6Ax9t1Z8Y&t=549s" target="_blank" rel="noopener" aria-label="Смотреть видео на YouTube с таймкода"><span class="play-mark"></span></a>
+                    <div class="video-card-content">
+                        <h3>Фрагмент разбора</h3>
+                        <p>Короткий вход в содержание ролика: полезно для тех, кто быстро оценивает тренера по делу.</p>
+                        <a class="video-link" href="https://www.youtube.com/watch?v=aJ6Ax9t1Z8Y&t=549s" target="_blank" rel="noopener">Смотреть на YouTube</a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <h2 class="section-title">Результаты на помосте <span class="title-line"></span></h2>
+            <div class="reviews-grid">
+                <div class="review-card">
+                    <div class="review-head">
+                        <div class="review-avatar">А</div>
+                        <div class="review-meta">
+                            <strong>Алексей М.</strong>
+                            <span>Классический жим, силовой цикл</span>
+                        </div>
+                    </div>
+                    <p>«За один цикл прибавил 12,5 кг к синглу. Главное — исчез хаос: стало понятно, зачем каждая неделя, где тяжелая работа, где скорость, а где разгрузка».</p>
+                    <span class="review-author">+12,5 кг к максимальному подходу</span>
+                </div>
+                <div class="review-card">
+                    <div class="review-head">
+                        <div class="review-avatar">Д</div>
+                        <div class="review-meta">
+                            <strong>Дмитрий К.</strong>
+                            <span>Народный жим, работа на выносливость</span>
+                        </div>
+                    </div>
+                    <p>«Раньше после середины подхода просто разваливался по темпу. После корректировки техники и объема добавил 6 повторений с собственным весом без ощущения перетренированности».</p>
+                    <span class="review-author">+6 повторений в соревновательном движении</span>
+                </div>
+                <div class="review-card">
+                    <div class="review-head">
+                        <div class="review-avatar">С</div>
+                        <div class="review-meta">
+                            <strong>Сергей В.</strong>
+                            <span>КМС, технический разбор</span>
+                        </div>
+                    </div>
+                    <p>«На видеоразборе нашли ошибку в срыве и положении локтей. После перестройки траектории плечо перестало забиваться, а рабочие веса пошли стабильнее».</p>
+                    <span class="review-author">исправлена техника и снижена боль в плече</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="loyalty">
+        <div class="container">
+            <h2 class="section-title">Система лояльности <span class="title-line"></span></h2>
+            <div class="loyalty-grid">
+                <div class="loyalty-card">
+                    <strong>−10%</strong>
+                    <h3>Продление ведения</h3>
+                    <p>После первого месяца спортсмен получает скидку на следующий цикл, если продолжает подготовку без перерыва.</p>
+                </div>
+                <div class="loyalty-card">
+                    <strong>Бонус</strong>
+                    <h3>Рекомендация друга</h3>
+                    <p>Если по вашей рекомендации приходит новый спортсмен, вы получаете дополнительный видеоразбор техники или корректировку недели.</p>
+                </div>
+                <div class="loyalty-card">
+                    <strong>Старт</strong>
+                    <h3>Соревновательный пакет</h3>
+                    <p>Для тех, кто идет к старту, можно собрать расширенное сопровождение: подводка, контроль веса, стратегия попыток и разбор выступления после турнира.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contacts">
+        <div class="container">
+            <h2 class="section-title">Контакты и запись <span class="title-line"></span></h2>
+            <div class="contact-wrapper">
+                <div class="contact-info">
+                    <p>Свяжитесь напрямую для обсуждения формата тренировок или заполните анкету справа. Дмитрий лично проведет аудит вашей техники и предложит оптимальный формат ведения.</p>
+
+                    <div class="contact-methods">
+                        <div class="method-item"><span>Телефон:</span> +7 (978) 775-05-29</div>
+                        <div class="method-item"><span>Telegram:</span> @dmytrorex22</div>
+                        <div class="method-item"><span>Email:</span> <a href="mailto:dima-chkana@mail.ru">dima-chkana@mail.ru</a></div>
+                        <div class="method-item"><span>VK:</span> <a href="https://vk.com/chkana" target="_blank" rel="noopener">vk.com/chkana</a></div>
+                    </div>
+
+                    <a href="https://t.me/dmytrorex22" target="_blank" rel="noopener" class="btn btn-tg">Написать напрямую в Telegram</a>
+
+                    <div class="payment-info">
+                        <h4>Способы оплаты</h4>
+                        <p>Оплата услуг ведения и аудита производится по согласованию на карту: СБП, перевод Сбербанк, Т-Банк или ПСБ после предварительного обсуждения целей.</p>
+                    </div>
+                </div>
+                <form class="contact-form">
+                    <input type="text" name="name" autocomplete="name" placeholder="Ваше имя" required>
+                    <input type="text" name="contact" autocomplete="tel" placeholder="Телефон или ник в Telegram" required>
+                    <input type="text" name="bench" placeholder="Текущий лучший жим (кг / повторения)" required>
+                    <select name="goal" required>
+                        <option value="" disabled selected>Выберите приоритетное направление</option>
+                        <option value="classic">Классический жим лежа</option>
+                        <option value="national">Народный жим</option>
+                        <option value="military">Военный жим</option>
+                        <option value="equip">Жим в экипировке</option>
+                        <option value="ofp">Общая физическая подготовка (ОФП)</option>
+                    </select>
+                    <p class="form-status" aria-live="polite"></p>
+                    <button type="submit" class="btn btn-primary">Отправить данные Дмитрию</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 CHKAN BENCH SYSTEM. Авторская методология Дмитрия Чкана. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script>
+        const currentInput = document.getElementById('current-max');
+        const targetInput = document.getElementById('target-max');
+        const weeksInput = document.getElementById('weeks');
+        const resultSpan = document.getElementById('weekly-progress');
+        const menuButton = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        const contactForm = document.querySelector('.contact-form');
+        const formStatus = document.querySelector('.form-status');
+
+        function calculateProgress() {
+            const current = parseFloat(currentInput.value) || 0;
+            const target = parseFloat(targetInput.value) || 0;
+            const weeks = Math.max(parseInt(weeksInput.value) || 1, 1);
+
+            if (target <= current) {
+                resultSpan.textContent = "0.00 кг (цель достигнута)";
+                return;
+            }
+
+            const diff = target - current;
+            const perWeek = diff / weeks;
+            resultSpan.textContent = perWeek.toFixed(2) + " кг";
+        }
+
+        currentInput.addEventListener('input', calculateProgress);
+        targetInput.addEventListener('input', calculateProgress);
+        weeksInput.addEventListener('input', calculateProgress);
+
+        menuButton.addEventListener('click', () => {
+            const isOpen = document.body.classList.toggle('menu-open');
+            menuButton.setAttribute('aria-expanded', String(isOpen));
+        });
+
+        navLinks.addEventListener('click', (event) => {
+            if (event.target.tagName === 'A') {
+                document.body.classList.remove('menu-open');
+                menuButton.setAttribute('aria-expanded', 'false');
+            }
+        });
+
+        contactForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+            formStatus.textContent = 'Анкета подготовлена. Для быстрой связи напишите Дмитрию в Telegram: @dmytrorex22.';
+            formStatus.classList.add('is-success');
+            contactForm.reset();
+        });
+
+        calculateProgress();
+    </script>
+</body>
+</html>
